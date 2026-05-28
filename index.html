@@ -849,15 +849,6 @@ document.querySelectorAll('a, button, .gallery-item, .filter-btn').forEach(el =>
   el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); cursorRing.classList.remove('hover'); });
 });
 
-// ── Contact form
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('.btn-send');
-  btn.textContent = 'Message Sent ✓';
-  btn.style.background = 'rgba(200,185,154,0.15)';
-  setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; e.target.reset(); }, 3000);
-}
-
 // Init
 buildGallery('all');
 </script>
