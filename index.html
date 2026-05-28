@@ -237,10 +237,10 @@
   }
   .section-title em { font-style: italic; color: rgba(245,242,237,0.6); }
 
-  /* ── GALLERY ── */
-  #gallery { background: var(--black); }
+  /* ── image galleries ── */
+  #image galleries { background: var(--black); }
 
-  .gallery-header {
+  .image galleries-header {
     padding: 0 6vw;
     margin-bottom: 4rem;
     display: flex;
@@ -248,7 +248,7 @@
     justify-content: space-between;
   }
 
-  .gallery-filters {
+  .image galleries-filters {
     display: flex;
     gap: 1.5rem;
   }
@@ -279,15 +279,15 @@
   .filter-btn.active::after, .filter-btn:hover::after { transform: scaleX(1); }
 
   /* Masonry-style grid */
-  .gallery-grid {
+  .image galleries-grid {
     columns: 3;
     column-gap: 3px;
     padding: 0 3px;
   }
-  @media (max-width: 900px) { .gallery-grid { columns: 2; } }
-  @media (max-width: 550px) { .gallery-grid { columns: 1; } }
+  @media (max-width: 900px) { .image galleries-grid { columns: 2; } }
+  @media (max-width: 550px) { .image galleries-grid { columns: 1; } }
 
-  .gallery-item {
+  .image galleries-item {
     break-inside: avoid;
     margin-bottom: 3px;
     position: relative;
@@ -297,17 +297,17 @@
     transform: translateY(15px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
-  .gallery-item.visible { opacity: 1; transform: translateY(0); }
+  .image galleries-item.visible { opacity: 1; transform: translateY(0); }
 
-  .gallery-item img {
+  .image galleries-item img {
     width: 100%;
     display: block;
     transition: transform 0.7s ease, filter 0.5s ease;
     filter: brightness(0.92) saturate(1.05);
   }
-  .gallery-item:hover img { transform: scale(1.03); filter: brightness(1) saturate(1.1); }
+  .image galleries-item:hover img { transform: scale(1.03); filter: brightness(1) saturate(1.1); }
 
-  .gallery-item-overlay {
+  .image galleries-item-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, rgba(5,5,5,0.75) 0%, transparent 55%);
@@ -317,8 +317,8 @@
     align-items: flex-end;
     padding: 1.5rem;
   }
-  .gallery-item:hover .gallery-item-overlay { opacity: 1; }
-  .gallery-item-title {
+  .image galleries-item:hover .image galleries-item-overlay { opacity: 1; }
+  .image galleries-item-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.05rem;
     font-weight: 300;
@@ -326,7 +326,7 @@
     color: var(--white);
     letter-spacing: 0.04em;
   }
-  .gallery-item-loc {
+  .image galleries-item-loc {
     font-size: 0.55rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -615,7 +615,7 @@
     <span>Light Hunter</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#image galleries">image galleries</a></li>
     <li><a href="#bio/artist statement">bio/artist statement</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -636,14 +636,14 @@
   </div>
 </section>
 
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="gallery-header">
+<!-- image galleries -->
+<section id="image galleries">
+  <div class="image galleries-header">
     <div>
       <p class="section-label">Portfolio</p>
       <h2 class="section-title">The <em>Collection</em></h2>
     </div>
-    <div class="gallery-filters">
+    <div class="image galleries-filters">
       <button class="filter-btn active" data-filter="all">All</button>
       <button class="filter-btn" data-filter="mountain">Mountain</button>
       <button class="filter-btn" data-filter="forest">Forest</button>
@@ -652,7 +652,7 @@
     </div>
   </div>
 
-  <div class="gallery-grid" id="galleryGrid"></div>
+  <div class="image galleries-grid" id="image galleriesGrid"></div>
 </section>
 
 <!-- LIGHTBOX -->
@@ -720,7 +720,7 @@
 <footer>
   <span class="footer-name">Mattéo Vendeville</span>
   <ul class="footer-links">
-    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#image galleries">image galleries</a></li>
     <li><a href="#bio/artist statement">bio/artist statement</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -739,24 +739,24 @@ const photos = [
   { src: './IMG_4014_hdr.jpg',                          title: 'Six-fours-les-plages', loc: 'France',   category: 'sea'      },
 ];
 
-// ── Build gallery
-const grid = document.getElementById('galleryGrid');
+// ── Build image galleries
+const grid = document.getElementById('image galleriesGrid');
 let activeFilter = 'all';
 let currentIndex = 0;
 
-function buildGallery(filter) {
+function buildimage galleries(filter) {
   grid.innerHTML = '';
   const visible = photos.filter(p => filter === 'all' || p.category === filter);
   visible.forEach((photo, i) => {
     const item = document.createElement('div');
-    item.className = 'gallery-item';
+    item.className = 'image galleries-item';
     item.dataset.index = photos.indexOf(photo);
     item.innerHTML = `
       <img src="${photo.src}" alt="${photo.title}" loading="lazy">
-      <div class="gallery-item-overlay">
+      <div class="image galleries-item-overlay">
         <div>
-          <div class="gallery-item-title">${photo.title}</div>
-          <div class="gallery-item-loc">${photo.loc}</div>
+          <div class="image galleries-item-title">${photo.title}</div>
+          <div class="image galleries-item-loc">${photo.loc}</div>
         </div>
       </div>`;
     item.addEventListener('click', () => openLightbox(photos.indexOf(photo)));
@@ -771,7 +771,7 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     activeFilter = btn.dataset.filter;
-    buildGallery(activeFilter);
+    buildimage galleries(activeFilter);
   });
 });
 
@@ -826,7 +826,7 @@ window.addEventListener('load', () => {
   document.getElementById('heroBg').classList.add('loaded');
 });
 
-// ── Intersection observer for gallery items
+// ── Intersection observer for image galleries items
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
@@ -844,7 +844,7 @@ document.addEventListener('mousemove', e => {
   }, 80);
 });
 
-document.querySelectorAll('a, button, .gallery-item, .filter-btn').forEach(el => {
+document.querySelectorAll('a, button, .image galleries-item, .filter-btn').forEach(el => {
   el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); cursorRing.classList.add('hover'); });
   el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); cursorRing.classList.remove('hover'); });
 });
@@ -859,7 +859,7 @@ function handleSubmit(e) {
 }
 
 // Init
-buildGallery('all');
+buildimage galleries('all');
 </script>
 </body>
 </html>
