@@ -187,31 +187,6 @@
     animation: fadeUp 1s 0.9s forwards;
   }
 
-  .scroll-hint {
-    position: absolute;
-    bottom: 2.5rem;
-    right: 8vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    opacity: 0;
-    animation: fadeUp 1s 1.4s forwards;
-  }
-  .scroll-hint span {
-    font-size: 0.55rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--muted);
-    writing-mode: vertical-rl;
-  }
-  .scroll-line {
-    width: 1px;
-    height: 60px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-    animation: scrollPulse 2s 2s infinite;
-  }
-
   @keyframes fadeUp {
     to { opacity: 1; transform: translateY(0); }
   }
