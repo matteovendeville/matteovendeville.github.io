@@ -29,34 +29,8 @@
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
     overflow-x: hidden;
-    cursor: none;
+    cursor: auto;
   }
-
-  /* ── Custom cursor ── */
-  .cursor {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    background: var(--accent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
-  }
-  .cursor-ring {
-    position: fixed;
-    width: 36px;
-    height: 36px;
-    border: 1px solid rgba(200,185,154,0.5);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: transform 0.18s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
-  }
-  .cursor.hover { width: 14px; height: 14px; }
-  .cursor-ring.hover { width: 54px; height: 54px; opacity: 0.4; }
 
   /* ── NAV ── */
   nav {
@@ -603,8 +577,6 @@
 </head>
 <body>
 
-<!-- Custom Cursor -->
-
 <!-- NAV -->
 <nav id="nav">
   <a href="#hero" class="nav-logo">
@@ -811,24 +783,6 @@ window.addEventListener('load', () => {
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
-
-// ── Custom cursor
-const cursor = document.getElementById('cursor');
-const cursorRing = document.getElementById('cursorRing');
-
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-  setTimeout(() => {
-    cursorRing.style.left = e.clientX + 'px';
-    cursorRing.style.top = e.clientY + 'px';
-  }, 80);
-});
-
-document.querySelectorAll('a, button, .gallery-item, .filter-btn').forEach(el => {
-  el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); cursorRing.classList.add('hover'); });
-  el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); cursorRing.classList.remove('hover'); });
-});
 
 // Init
 buildGallery('all');
