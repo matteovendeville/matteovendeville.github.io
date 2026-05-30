@@ -772,6 +772,17 @@ function closeLightbox() {
 
 document.getElementById('lbClose').addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+ // Swipe up to close lightbox on mobile
+let touchStartY = 0;
+document.getElementById('lightbox').addEventListener('touchstart', e => {
+  touchStartY = e.touches[0].clientY;
+});
+document.getElementById('lightbox').addEventListener('touchend', e => {
+  const swipeDistance = touchStartY - e.changedTouches[0].clientY;
+  if (swipeDistance > 60) {
+    closeLightbox();
+  }
+});
 
 document.getElementById('lbPrev').addEventListener('click', () => {
   currentIndex = (currentIndex - 1 + photos.length) % photos.length;
