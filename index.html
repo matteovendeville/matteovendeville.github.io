@@ -46,7 +46,24 @@
   }
   nav.scrolled { background: rgba(5,5,5,0.92); backdrop-filter: blur(12px); }
 
- .nav-hamburger { display: none; }
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+  align-items: center;
+}
+.nav-hamburger span {
+  display: block;
+  width: 28px;
+  height: 1.5px;
+  background: var(--white);
+  transition: all 0.3s ease;
+}
   
  .nav-logo {
     font-family: 'Cormorant Garamond', serif;
