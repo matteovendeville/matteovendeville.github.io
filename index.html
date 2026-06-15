@@ -717,6 +717,7 @@ const photos = [
   { src: './IMG_2930.jpeg',                             title: 'Seljalandsfoss',       loc: 'Iceland',  category: 'mountain' },
   { src: './IMG_3998_hdr.jpg',                          title: 'Esterel',              loc: 'France',   category: 'sea'   },
   { src: './IMG_4014_hdr.jpg',                          title: 'Six-fours-les-plages', loc: 'France',   category: 'sea'      },
+  { src: './IMG_4058_hdr.jpg',                          title: 'Lakes Robert',         loc: 'France',   category: 'forest'   },
 ];
 
 // ── Build gallery
@@ -726,7 +727,7 @@ let currentIndex = 0;
 
 function buildGallery(filter) {
   grid.innerHTML = '';
-  const visible = photos.filter(p => filter === 'all' || p.category === filter);
+  const visible = photos.filter(p => filter === 'all' || p.category.split(' ').includes(filter));
   visible.forEach((photo, i) => {
     const item = document.createElement('div');
     item.className = 'gallery-item';
